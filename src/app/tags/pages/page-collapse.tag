@@ -1,0 +1,1 @@
+<page-collapse></page-collapse>

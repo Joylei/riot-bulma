@@ -1,0 +1,1 @@
+<page-charts></page-charts>

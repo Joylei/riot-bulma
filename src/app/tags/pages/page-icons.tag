@@ -1,0 +1,1 @@
+<page-icons></page-icons>

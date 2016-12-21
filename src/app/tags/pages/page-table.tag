@@ -1,0 +1,1 @@
+<page-table></page-table>

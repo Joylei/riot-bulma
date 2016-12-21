@@ -1,0 +1,1 @@
+<page-ajax></page-ajax>

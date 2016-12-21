@@ -1,0 +1,1 @@
+<page-notifications></page-notifications>
