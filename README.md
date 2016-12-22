@@ -47,6 +47,10 @@ riot@3.0.5
 see https://jsfiddle.net/wgs22gkg/2/
 riot@3.0.5
 
+## License
+
+MIT
+
 ## thanks
 
 [Vue-Bulma](https://github.com/wangxg2016/vue-bulma)
