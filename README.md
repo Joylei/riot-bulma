@@ -28,6 +28,20 @@ riot-format
 https://github.com/Joylei/koa-webpack-middleware.git
 ```
 
+## known issues
+
+- from riot@3.0.0, you have to import riot like:
+
+```js
+import * as riot from 'riot'
+```
+
+that makes your existing code not work
+
+- 'show/hide' has different scope from 'if' directive for VIRTUAL tag: riot@3.0.5
+
+- nested VIRTUAL tag still has a virtual element left on dom. see menu-list.tag 
+
 ## thanks
 
 [Vue-Bulma](https://github.com/wangxg2016/vue-bulma)
