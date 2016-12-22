@@ -9,7 +9,11 @@
     "dev": "webpack-dev-server --config config/webpack.config.dev.js --devtool eval --progress --colors --hot --content-base dist",
     "test": "mocha"
   },
-  "author": "joylei <leingliu@gmail.com>",
+  "author":{
+    "name": "joylei",
+    "email": "leingliu@gmail.com",
+    "url": "https://github.com/Joylei"
+  },
   "license": "MIT",
   "devDependencies": {
     "babel-loader": "^6.2.10",
@@ -34,7 +38,6 @@
     "less-loader": "^2.2.3",
     "mocha": "^3.2.0",
     "nprogress": "^0.2.0",
-    "redux": "^3.6.0",
     "riot": "^3.0.5",
     "riot-route": "^3.0.2",
     "riotjs-loader": "git+https://github.com/Joylei/riotjs-loader.git",
