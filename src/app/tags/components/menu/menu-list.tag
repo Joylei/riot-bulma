@@ -11,8 +11,7 @@
                 { item.title }
                 <span class="icon is-small is-angle"><i class="fa fa-angle-down"></i></span>
             </a>
-            <ul class="menu-list" data-is="menu-list" 
-                data="{ item.children }"></ul>
+            <ul class="menu-list" data-is="menu-list" data="{ item.children }"></ul>
         </virtual>
     </li>
     <script>

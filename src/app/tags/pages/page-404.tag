@@ -20,7 +20,7 @@ import '../components/page/page.tag'
             </section>
         </yield>
     </page>
-    <style lang="less" scoped>
+    <style type="text/less">
     #shadow-rocket .circle { fill: #4BAE97 }
     #shadow-rocket .engine { fill: #7D7D7D }
     #shadow-rocket .base { fill: #B0CED8 }

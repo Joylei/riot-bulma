@@ -6,7 +6,7 @@ import './components/page/sidebar.tag'
 
 <app>
     <header if="{ isLoggedIn }"></header>
-    <section class="page">
+    <section class="page-container">
         <sidebar if="{ isLoggedIn }"></sidebar>
         <div class="page" data-is="{ page }" query="{ query }" ref="page"></div>
     </section>
@@ -35,7 +35,7 @@ import './components/page/sidebar.tag'
             this.update()
 
             return this.refs.page //return the mounted page tag
-        }, '#!')
+        }, '#!/')
 
         this.on('unmount', ()=> stop())
 
@@ -59,7 +59,7 @@ import './components/page/sidebar.tag'
     </script>
 
     <style type="text/less">
-        :scope, section.page{
+        :scope, .page-container{
             display:block;
             position: absolute;
             top:0;
@@ -69,7 +69,7 @@ import './components/page/sidebar.tag'
             overflow: hidden;
         }
 
-        section.page{
+        .page-container{
             top:50px;
         }
 
@@ -88,7 +88,7 @@ import './components/page/sidebar.tag'
             width: 220px;
         }
 
-        div.page{
+        .page {
             position: absolute;
             top:0;
             left:220px;
