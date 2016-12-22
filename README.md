@@ -36,9 +36,11 @@ https://github.com/Joylei/koa-webpack-middleware.git
 import * as riot from 'riot'
 ```
 
-that makes your existing code not work
+which may make your existing code not work
 
-- 'show/hide' has different scope from 'if' directive for VIRTUAL tag: riot@3.0.5
+- 'show/hide' has different scope from 'if' directive, see page-home.tag
+
+riot@3.0.5
 
 - nested VIRTUAL tag still has a virtual element left on dom. see menu-list.tag 
 
