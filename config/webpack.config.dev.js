@@ -10,7 +10,7 @@ module.exports = merge(config, {
         'app': [
             // For old browsers
             'eventsource-polyfill',
-            'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
+            'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true',
             path.resolve(dir_app, 'app.js')
         ]
     },

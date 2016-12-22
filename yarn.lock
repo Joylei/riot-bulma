@@ -1274,6 +1274,12 @@ debug@*, debug@2, debug@2.2.0, debug@^2.1.1, debug@^2.2.0, debug@~2.2.0:
   dependencies:
     ms "0.7.1"
 
+debug@^2.5.1:
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-2.5.1.tgz#9107bb4a506052ec2a02314bc606313ed2b921c1"
+  dependencies:
+    ms "0.7.2"
+
 decamelize@^1.0.0, decamelize@^1.1.2:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/decamelize/-/decamelize-1.2.0.tgz#f6534d15148269b20352e7bee26f501f9a191290"
@@ -1456,6 +1462,10 @@ es6-map@^0.1.3:
     es6-set "~0.1.3"
     es6-symbol "~3.1.0"
     event-emitter "~0.3.4"
+
+es6-object-assign@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/es6-object-assign/-/es6-object-assign-1.0.3.tgz#40a192e0fda5ee44ee8cf6f5b5d9b47cd0f69b14"
 
 es6-set@~0.1.3:
   version "0.1.4"
@@ -2388,6 +2398,16 @@ koa-static@^2.0.0:
     debug "*"
     koa-send "~3.1.0"
 
+"koa-webpack-middleware@https://github.com/Joylei/koa-webpack-middleware.git":
+  version "0.1.0"
+  resolved "https://github.com/Joylei/koa-webpack-middleware.git#00913412df53edc4fdfc8240ac729c537cb27d2a"
+  dependencies:
+    babel-polyfill "^6.20.0"
+    debug "^2.5.1"
+    webpack "^1.14.0"
+    webpack-dev-middleware "^1.9.0"
+    webpack-hot-middleware "^2.13.2"
+
 koa@^1.2.4:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/koa/-/koa-1.2.4.tgz#6ef6d17a7bea8ec778a8572b55a0d0562e488654"
@@ -2670,6 +2690,10 @@ mocha@^3.2.0:
 ms@0.7.1:
   version "0.7.1"
   resolved "https://registry.yarnpkg.com/ms/-/ms-0.7.1.tgz#9cd13c03adbff25b65effde7ce864ee952017098"
+
+ms@0.7.2:
+  version "0.7.2"
+  resolved "https://registry.yarnpkg.com/ms/-/ms-0.7.2.tgz#ae25cf2512b3885a1d95d7f037868d8431124765"
 
 mute-stream@0.0.5:
   version "0.0.5"
@@ -3614,13 +3638,21 @@ sha.js@2.2.6:
   version "2.2.6"
   resolved "https://registry.yarnpkg.com/sha.js/-/sha.js-2.2.6.tgz#17ddeddc5f722fb66501658895461977867315ba"
 
-shelljs@^0.7.5:
+shelljs@^0.7.3, shelljs@^0.7.5:
   version "0.7.5"
   resolved "https://registry.yarnpkg.com/shelljs/-/shelljs-0.7.5.tgz#2eef7a50a21e1ccf37da00df767ec69e30ad0675"
   dependencies:
     glob "^7.0.0"
     interpret "^1.0.0"
     rechoir "^0.6.2"
+
+shx@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/shx/-/shx-0.2.1.tgz#d5f8c536e77e6b6ec83bd66f746ab300f1775ecf"
+  dependencies:
+    es6-object-assign "^1.0.3"
+    minimist "^1.2.0"
+    shelljs "^0.7.3"
 
 signal-exit@^3.0.0:
   version "3.0.2"

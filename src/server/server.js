@@ -7,13 +7,20 @@ import route from 'koa-route'
 import mount from 'koa-mount'
 
 import render from './lib/render'
-import { devMiddleware, hotMiddleware } from './lib/webpack'
+import { devMiddleware, hotMiddleware } from 'koa-webpack-middleware'
 import webpackConfig from '../../config/webpack.config.dev'
 import webpack from 'webpack'
 
 const app = koa()
 
 app.use(logger())
+
+// let clientId = 0
+// app.use(function*(next){
+//     const state = this.state || (this.state = {})
+//     state.clientId = ++clientId
+//     yield next 
+// })
 
 app.use(route.get('/', home))
 
@@ -27,7 +34,7 @@ if(process.env.NODE_ENV !== 'production'){
     app.use(devMiddleware(compiler, {
         noInfo: false,
         quiet: false,
-        lazy: false, //means no watching, but recompilation on every request
+        lazy: false, //true means no watching, but recompilation on every request
         watchOptions:{
             aggregateTimeout: 300,
             pool: true
