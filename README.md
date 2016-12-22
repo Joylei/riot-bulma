@@ -5,11 +5,13 @@ combine RIOT and Bluma
 ## Bulma
 
 A modern CSS framework based on Flexbox
+
 [Bulma](http://bulma.io/)
 
 ## RIOT
 
 Simple and elegant component-based UI library
+
 [RIOT](http://riotjs.com)
 
 ## dependencies
