@@ -42,8 +42,9 @@ which may make your existing code not work
 
 riot@3.0.5
 
-- nested VIRTUAL tag still has a virtual element left on dom. see menu-list.tag
+- VIRTUAL tag is not virtual and still has a virtual element left on dom.
 
+see https://jsfiddle.net/wgs22gkg/2/
 riot@3.0.5
 
 ## thanks

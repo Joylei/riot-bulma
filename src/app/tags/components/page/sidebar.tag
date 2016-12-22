@@ -140,20 +140,16 @@ import '../menu/menu.tag'
     }
 
     menu {
-        display: block;
-        padding: 0;
-        margin: 0;
-        margin-bottom:20px;
+        display:flex;
+        flex-basis:auto;
+        flex-direction:column;
+        flex-grow:1;
+        flex-shrink:1;
+        padding:10px;
+        overflow-x:hidden;
+        overflow-y:auto;
 
         aside.menu{
-            display:flex;
-            flex-basis:auto;
-            flex-direction:column;
-            flex-grow:1;
-            flex-shrink:1;
-            padding:10px;
-            overflow-x:hidden;
-            overflow-y:auto;
 
             .menu-label {
                 font-weight:700;
