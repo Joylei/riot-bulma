@@ -17,8 +17,8 @@
     </li>
     <script>
         /**
-        * opts.data: Array<MemuItem>
-        * MemuItem: { title: string, href:string, icon:string, children:Array<MemuItem>}
+        * opts.data: Array<MenuItem>
+        * MenuItem: { title: string, href:string, icon:string, children?:Array<MenuItem>}
         */
     </script>
 </menu-list>
