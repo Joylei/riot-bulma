@@ -1,17 +1,14 @@
 import route, { DEFAULT_TITLE } from '../route'
 import {isFunction} from '../../shared/util'
-import './components/app-header.tag'
 import store, {Action_Login, Action_Logout} from '../store'
+import './components/page/header.tag'
+import './components/page/sidebar.tag'
 
 <app>
-    <section>
-        <app-header if="{ isLoggedIn }"></app-header>
-        <section class="page">
-            <sidebar if="{ isLoggedIn }"></sidebar>
-            <div class="page-container">
-                <div data-is="{ page }" query="{ query }" ref="page"></div>
-            </div>
-        </section>
+    <header if="{ isLoggedIn }"></header>
+    <section class="page">
+        <sidebar if="{ isLoggedIn }"></sidebar>
+        <div class="page" data-is="{ page }" query="{ query }" ref="page"></div>
     </section>
 
     <script>
@@ -60,4 +57,45 @@ import store, {Action_Login, Action_Logout} from '../store'
             }
         })
     </script>
+
+    <style type="text/less">
+        :scope, section.page{
+            display:block;
+            position: absolute;
+            top:0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+        }
+
+        section.page{
+            top:50px;
+        }
+
+        header {
+            position: fixed;
+            right: 0;
+            left: 0;
+            z-index: 1030;
+        }
+
+        sidebar {
+            position: absolute;
+            top:0;
+            left:0;
+            bottom:0;
+            width: 220px;
+        }
+
+        div.page{
+            position: absolute;
+            top:0;
+            left:220px;
+            bottom:0;
+            right:0;
+            overflow-y: scroll;
+            overflow-x: hidden;
+        }
+    </style>
 </app>

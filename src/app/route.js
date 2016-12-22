@@ -25,34 +25,34 @@ const DEFAULT_PAGE = 'home'
  */
 const routeTable = {
     '/': 'home',
-    'home': 'home',
-    '404': '404',
-    'about': 'about',
-    'ajax': 'ajax',
-    'buttons': 'buttons',
-    'card': 'card',
-    'collapse': 'collapse',
-    'content': 'content',
-    'form': 'form',
-    'icons': 'icons',
-    'image': 'image',
-    'level': 'level',
-    'login': 'login',
-    'mediaobject': 'mediaobject',
-    'message': 'message',
-    'modal': 'modal',
-    'nav': 'nav',
-    'notifications': 'notifications',
-    'pagination': 'pagination',
-    'panel': 'panel',
-    'progress': 'progress',
-    'rating': 'rating',
-    'table': 'table',
-    'tabs': 'tabs',
-    'tags': 'tags',
-    'timeline': 'timeline',
-    'title': 'title',
-    'toast': 'toast'
+    '/home': 'home',
+    '/404': '404',
+    '/about': 'about',
+    '/ajax': 'ajax',
+    '/buttons': 'buttons',
+    '/card': 'card',
+    '/collapse': 'collapse',
+    '/content': 'content',
+    '/form': 'form',
+    '/icons': 'icons',
+    '/image': 'image',
+    '/level': 'level',
+    '/login': 'login',
+    '/mediaobject': 'mediaobject',
+    '/message': 'message',
+    '/modal': 'modal',
+    '/nav': 'nav',
+    '/notifications': 'notifications',
+    '/pagination': 'pagination',
+    '/panel': 'panel',
+    '/progress': 'progress',
+    '/rating': 'rating',
+    '/table': 'table',
+    '/tabs': 'tabs',
+    '/tags': 'tags',
+    '/timeline': 'timeline',
+    '/title': 'title',
+    '/toast': 'toast'
 }
 
 export default function setupRoute(onRouteRequested, baseUrl = '#!') {
@@ -78,7 +78,7 @@ export default function setupRoute(onRouteRequested, baseUrl = '#!') {
     })
     route(() => {
         console.log('unresolved url', window.location.href)
-        route('/') //home
+        route('/404') //404
     })
     route.start(true)
 
