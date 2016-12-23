@@ -1,51 +1,65 @@
 import 'nprogress/nprogress.css'
 import NProgress from 'nprogress'
 import {observable} from 'riot'
-import {ready} from './dom'
+//import {ready} from './dom'
 
-let watcher = observable()
-
-watcher.on('page-loading', inc) 
-
-watcher.on('page-loaded',  dec)
-
-//TODO: add ajax events
-
-//pending operations
-let count = 0
-let timerId
-function inc(){
-    count++
-    if(!NProgress.isStarted()){
-        NProgress.start()
+function createWatcher(){
+    //pending operations
+    let pendingCount = 0
+    let timerId
+    let startTime = 0
+    function inc(){
+        pendingCount++
+        if(!NProgress.isStarted()){
+            NProgress.start()
+            startTime = new Date()
+        }
+        if(timerId){
+            clearTimeout(timerId)
+            timerId = null
+        }
     }
-    if(timerId){
-        clearTimeout(timerId)
-        timerId = null
-    }
-}
 
-function dec() {  
-    count--
-    if(count<=0){
-        count = 0
+    function dec() {
+        NProgress.inc()
+        pendingCount--
+        if(pendingCount > 0) return
+
+        pendingCount = 0
         if(!timerId){
+            let eclapased = new Date() - startTime
             timerId = setTimeout(()=>{
                 NProgress.done()
                 //NProgress.remove()
-            }, 300)
+            }, eclapased > 1000 ? 300 : 600)
         }
     }
+
+    function init(){
+        NProgress.configure({ showSpinner: false })
+
+        //wait page ready event
+        //inc()
+        //ready(dec)
+        NProgress.start()
+        NProgress.inc()
+    }
+
+    init()
+
+    return observable({
+        inc,
+        dec
+    })
 }
 
-function init(){
-    NProgress.configure({ showSpinner: false })
+let watcher = createWatcher()
 
-    //wait page ready event
-    inc()
-    ready(dec)
-}
+watcher.on('page-loading', watcher.inc) 
 
-init()
+watcher.on('page-loaded',  watcher.dec)
+
+//TODO: add ajax events
+
 export default watcher
 
