@@ -9,7 +9,7 @@ import store from '../../store'
         <div class="columns is-multiline">
     <div class="column is-4" each="{ item,index in parent.items }">
       <a target="_blank" href="{ item.html_url }">
-      <article class="message { parent.color[item.stargazers_count % 5] }">
+      <article class="message { parent.parent.getColor(item) }">
         <div class="message-header has-text-centered">
           <h1 class="is-3 title has-text-centered">{ item.name }</h1>
           <img class="is-circle" src="{ item.owner.avatar_url }">
@@ -35,7 +35,8 @@ import store from '../../store'
 
     <script>
       const url = 'https://api.github.com/search/repositories?q=language%3Ajavascript&sort=stars'
-      this.color = ['is-primary', 'is-info', 'is-success', 'is-warning', 'is-danger']
+      const color = ['is-primary', 'is-info', 'is-success', 'is-warning', 'is-danger']
+      this.getColor = (item) => color[item.stargazers_count % 5]
       this.items = []
       this.loading = true
       resource(url).items(null, (err, data)=>{
