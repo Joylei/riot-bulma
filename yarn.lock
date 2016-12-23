@@ -2398,9 +2398,9 @@ koa-static@^2.0.0:
     debug "*"
     koa-send "~3.1.0"
 
-"koa-webpack-middleware@https://github.com/Joylei/koa-webpack-middleware.git":
+"koa-webpack-middleware@git+https://github.com/Joylei/koa-webpack-middleware.git":
   version "0.1.0"
-  resolved "https://github.com/Joylei/koa-webpack-middleware.git#00913412df53edc4fdfc8240ac729c537cb27d2a"
+  resolved "git+https://github.com/Joylei/koa-webpack-middleware.git#f2e8f15d0f8a20e62fa9c1028277ec782eebf01a"
   dependencies:
     babel-polyfill "^6.20.0"
     debug "^2.5.1"

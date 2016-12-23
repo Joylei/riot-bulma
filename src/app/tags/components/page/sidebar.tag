@@ -66,7 +66,7 @@ import '../menu/menu.tag'
                             {title: 'Content', href: '#!/content'},
                             {title: 'Form', href: '#!/form'},
                             {title: 'Icons', href: '#!/icons'},
-                            {title: 'image', href: '#!/image'},
+                            {title: 'Image', href: '#!/image'},
                             {title: 'Level', href: '#!/level'},
                             {title: 'MediaObject', href:'#!/mediaobject'},
                             {title: 'Message', href:'#!/message'},
@@ -148,6 +148,7 @@ import '../menu/menu.tag'
         padding:10px;
         overflow-x:hidden;
         overflow-y:auto;
+        margin:0;
 
         aside.menu{
 

@@ -1,28 +1,28 @@
-<pager>
+<pagination>
     <nav class="pagination">
     <a class="{'is-disabled':opts.index===1}" class="button" onclick="{ page.bind(null, opts.index-1) }">{ opts.firstText || 'First' }</a>
-    <a class="{'is-disabled':opts.index===count}" class="button" @click="{ page.bind(null, opts.index+1) }">{ opts.lastText || 'Last' }</a>
+    <a class="{'is-disabled':opts.index===opts.count}" class="button" onclick="{ page.bind(null, opts.index+1) }">{ opts.nextText || 'Next' }</a>
     <ul>
         <li if="{ opts.count>0 && opts.index>1 }" onclick="{ page.bind(null, 1) }">
-        <a class="button">1</a>
+            <a class="button">1</a>
         </li>
-        <li if"{ opts.count>3 && opts.index>3 }">
-        <span>...</span>
+        <li if="{ opts.count>3 && opts.index>3 }">
+            <span>...</span>
         </li>
         <li if="{ opts.count>0 && opts.index>2 }" onclick="{ page.bind(null, opts.index-1) }">
-        <a class="button">{ opts.index-1 }</a>
+            <a class="button">{ opts.index-1 }</a>
         </li>
         <li if="{ opts.count>0 }" onclick="{ page.bind(null, opts.index) }">
-        <a class="button is-primary" class="{'is-loading': opts.loading}">{ opts.index }</a>
+            <a class="button is-primary { 'is-loading': opts.loading }">{ opts.index }</a>
         </li>
         <li if="{ opts.index<opts.count }" onclick="{ page.bind(null, opts.index+1) }">
-        <a class="button">{ opts.index+1 }</a>
+            <a class="button">{ opts.index+1 }</a>
         </li>
         <li if="{ (opts.index+2)<opts.count }">
-        <span>...</span>
+            <span>...</span>
         </li>
         <li if="{ (opts.index+1)<opts.count }" onclick="{ page.bind(null, opts.count) }">
-        <a class="button">{ opts.count }</a>
+            <a class="button">{ opts.count }</a>
         </li>
     </ul>
     </nav>
@@ -45,4 +45,4 @@
             }
         }
     </script>
-</pager>
+</pagination>

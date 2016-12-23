@@ -1,14 +1,16 @@
 import route from '../route'
 import {isFunction} from '../../shared/util'
-import store, {Action_Login, Action_Logout} from '../store'
+import store, {Action_Login, Action_Logout, Action_Toast} from '../store'
 import './components/page/header.tag'
 import './components/page/sidebar.tag'
+import './components/modal/toast.tag'
 
 <app>
     <header if="{ isLoggedIn }"></header>
     <section class="page-container">
         <sidebar if="{ isLoggedIn }"></sidebar>
         <div class="page" data-is="{ page }" query="{ query }" ref="page"></div>
+        <toast items="{ toasts }"></toast>
     </section>
 
     <script>
@@ -43,6 +45,7 @@ import './components/page/sidebar.tag'
 
         this.on('unmount', ()=> stop())
 
+        //login status
         this.isLoggedIn = store.isLoggedIn
         store.on(Action_Login, ()=>{
             this.isLoggedIn = store.isLoggedIn
@@ -60,6 +63,13 @@ import './components/page/sidebar.tag'
                 this.update()
             }
         })
+
+        //toasts
+        this.toasts = store.toasts
+        store.on(Action_Toast, ()=>{
+            this.toasts = store.toasts
+            this.update()
+        })
     </script>
 
     <style type="text/less">
@@ -73,12 +83,19 @@ import './components/page/sidebar.tag'
             overflow: hidden;
         }
 
+        :scope, .page-container, header, sidebar, .page{
+            border:0;
+            margin:0;
+            padding:0;
+        }
+
         .page-container{
             top:50px;
         }
 
         header {
             position: fixed;
+            top: 0;
             right: 0;
             left: 0;
             z-index: 1030;
@@ -98,7 +115,7 @@ import './components/page/sidebar.tag'
             left:220px;
             bottom:0;
             right:0;
-            overflow-y: scroll;
+            overflow-y: auto;
             overflow-x: hidden;
             opacity: 1;
             transition: opacity .3s;
