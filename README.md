@@ -2,6 +2,8 @@
 
 combine RIOT and Bluma
 
+![demo](./demo.png)
+
 ## Bulma
 
 A modern CSS framework based on Flexbox

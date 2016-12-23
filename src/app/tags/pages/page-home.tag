@@ -26,7 +26,7 @@ import '../components/page/page.tag'
                         <div class="content">
                             <p class="title">RIOT-Bulma</p>
                             <p class="subtitle">轻量级高性能Admin UI框架</p>
-                            <p>偶然发现了bulma，自然语义定义的方式让人耳目一新，特别gzip后13.6k的size令人印象深刻，刚好基于vue+weui的移动端组件库demo已经接近完成，于是便抽空做了这套基于vue+bulma的轻量级UI。既然是后台管理UI，便可以任性的对IE无视，此处应有掌声。</p>
+                            <p>偶然发现了bulma，自然语义定义的方式让人耳目一新，特别gzip后13.6k的size令人印象深刻，于是便抽空做了这套基于riot+bulma的轻量级UI。既然是后台管理UI，便可以任性的对IE无视，此处应有掌声。</p>
                             <p>为简化部署及升级便利，UI处理上原则不变动bulma的基础设置，只增加差异化的部分，同时谈化各种切换效果，力求整个UI界面的小清新。</p>
                             <div class="content">
                             <!-- Content -->
