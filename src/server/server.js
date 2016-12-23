@@ -5,22 +5,12 @@ import logger from 'koa-logger'
 import serve from 'koa-static'
 import route from 'koa-route'
 import mount from 'koa-mount'
-
 import render from './lib/render'
-import { devMiddleware, hotMiddleware } from 'koa-webpack-middleware'
-import webpackConfig from '../../config/webpack.config.dev'
-import webpack from 'webpack'
 
 const app = koa()
 
 app.use(logger())
 
-// let clientId = 0
-// app.use(function*(next){
-//     const state = this.state || (this.state = {})
-//     state.clientId = ++clientId
-//     yield next 
-// })
 
 app.use(route.get('/', home))
 
@@ -30,19 +20,8 @@ function *home(){
 }
 
 if(process.env.NODE_ENV !== 'production'){
-    const compiler = webpack(webpackConfig)
-    app.use(devMiddleware(compiler, {
-        noInfo: false,
-        quiet: false,
-        lazy: false, //true means no watching, but recompilation on every request
-        watchOptions:{
-            aggregateTimeout: 300,
-            pool: true
-        },
-        publicPath: webpackConfig.output.publicPath,
-        stats: { colors: true, chunks: false }
-    }))
-    app.use(hotMiddleware(compiler))
+    //use require to make it conditional
+    require('./lib/webpack')(app)
 }else{
     app.use(mount('/assets', serve(path.join(__dirname, '../../dist'))))
 }
