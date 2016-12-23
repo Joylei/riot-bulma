@@ -1,4 +1,4 @@
-import route, { DEFAULT_TITLE } from '../route'
+import route from '../route'
 import {isFunction} from '../../shared/util'
 import store, {Action_Login, Action_Logout} from '../store'
 import './components/page/header.tag'
@@ -30,6 +30,10 @@ import './components/page/sidebar.tag'
 
             const name = 'page-' + conf.page
             require(`./pages/${name}.tag`) //webpack dynamic require; otherwise you have to import all pages in advance
+
+            //have to manually inject style due to lazy loading tag definition
+            riot.util.styleManager.inject()
+
             this.page = name
             this.query = query
             this.update()
@@ -96,6 +100,8 @@ import './components/page/sidebar.tag'
             right:0;
             overflow-y: scroll;
             overflow-x: hidden;
+            opacity: 1;
+            transition: opacity .3s;
         }
     </style>
 </app>
