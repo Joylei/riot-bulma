@@ -76,7 +76,7 @@ import '../menu/menu.tag'
                             {title: 'Table', href: '#!/table'},
                             {title: 'Tabs', href:'#!/tabs'},
                             {title: 'Tags', href:'#!/tags'},
-                            {title: 'Title', url: '#!/title'}
+                            {title: 'Title', href: '#!/title'}
                         ]
                     },
                     {
