@@ -14,34 +14,46 @@ import './components/modal/toast.tag'
     </section>
 
     <script>
+        const baseUrl='#!/', homeUrl='#!/',loginUrl = '#!/login'
+
         function getHash(){
             return (window.location.hash || '').toLowerCase()
         }
 
-        const loginUrl = '#!/login'
+        function isLoginUrl(){
+            return getHash() === loginUrl
+        }
 
-        const stop = route((conf,query)=>{
-            if(getHash() != loginUrl && !store.isLoggedIn){
+        function checkAuth(){
+            if(!isLoginUrl() && !store.isLoggedIn){
                 store.logout()
                 return
             }
-            if(getHash() == loginUrl && store.isLoggedIn){
+            if(isLoginUrl() && store.isLoggedIn){
                 store.login()
                 return
             }
+            return true
+        }
+
+        //start routes
+        const stop = route((conf,query)=>{
+            if(!checkAuth()) return
 
             const name = 'page-' + conf.page
             require(`./pages/${name}.tag`) //webpack dynamic require; otherwise you have to import all pages in advance
 
-            //have to manually inject style due to lazy loading tag definition
+            //have to manually inject style???
+            //not sure what happened, a bug???
             riot.util.styleManager.inject()
 
+            //it may be a good idea to use mount directly here
             this.page = name
             this.query = query
             this.update()
 
             return this.refs.page //return the mounted page tag
-        }, '#!/')
+        }, baseUrl)
 
         this.on('unmount', ()=> stop())
 
@@ -49,15 +61,15 @@ import './components/modal/toast.tag'
         this.isLoggedIn = store.isLoggedIn
         store.on(Action_Login, ()=>{
             this.isLoggedIn = store.isLoggedIn
-            if(getHash() == loginUrl){
-                window.location.href = '#!/'
+            if(isLoginUrl()){
+                window.location.href = homeUrl
             }else{
                 this.update()
             }
         })
         store.on(Action_Logout, ()=>{
             this.isLoggedIn = store.isLoggedIn
-            if(getHash() != loginUrl){
+            if(!isLoginUrl()){
                 window.location.href = loginUrl
             }else{
                 this.update()

@@ -1,4 +1,4 @@
-import nprogress from './lib/nprogress'
+import watcher from './lib/nprogress'
 import route from 'riot-route'
 import {
     isString, isFunction,
@@ -71,15 +71,15 @@ export default function setupRoute(onRouteRequested, baseUrl = '#!') {
         conf.title = conf.title || DEFAULT_TITLE
         const query = conf.query || noop
         route(path, (...args) => {
-            nprogress.trigger('page-loading')
+            watcher.inc()
             try{
                 const result = query.apply(null, args) || {}
-                let tag = onRouteRequested(conf, result)
+                const tag = onRouteRequested(conf, result)
                 //update title
-                console.log(tag)
+                //console.log(tag)
                 window.document.title = (isFunction(conf.title) ? conf.title(tag) : conf.title) || DEFAULT_TITLE
             }finally{
-                nprogress.trigger('page-loaded')
+                watcher.dec()
             }
         })
     })

@@ -1,6 +1,7 @@
 import 'nprogress/nprogress.css'
 import NProgress from 'nprogress'
 import {observable} from 'riot'
+import http from './http'
 //import {ready} from './dom'
 
 function createWatcher(){
@@ -55,11 +56,9 @@ function createWatcher(){
 
 let watcher = createWatcher()
 
-watcher.on('page-loading', watcher.inc) 
-
-watcher.on('page-loaded',  watcher.dec)
-
-//TODO: add ajax events
+//hook http events
+http.onstart = ()=> watcher.inc()
+http.oncomplete = ()=> watcher.dec()
 
 export default watcher
 
