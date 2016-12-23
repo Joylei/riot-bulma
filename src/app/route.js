@@ -32,6 +32,7 @@ const routeTable = {
     '/ajax': 'ajax',
     '/buttons': 'buttons',
     '/card': 'card',
+    '/charts':'charts',
     '/collapse': 'collapse',
     '/content': 'content',
     '/form': 'form',
