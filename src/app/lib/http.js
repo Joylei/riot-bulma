@@ -18,7 +18,7 @@ function param(obj){
  * - http(url, method, done) //http request with specified method
  * - http(url, method, data) //http request with specified method and data
  * - http(url, method, data, done) //http request with specified method and data
- * - http({url, method, data, headers, done}) //
+ * - http({url, method, data, headers, timeout, done}) //
  */
 export function http(url, method, data, done) {
     let req
@@ -39,7 +39,7 @@ export function http(url, method, data, done) {
         }
     }
     if(!req.url) return
-    req.method = req.method || 'GET'
+    req.method = (req.method || 'GET').toUpperCase()
     if(req.method === 'GET' && req.data){
         if(/\?/.test(req.url)){
             req.url += '&' + param(req.data)
@@ -87,9 +87,21 @@ export function http(url, method, data, done) {
     }
 
     xhr.send(req.method === 'GET' ? null : req.data)
-    return ()=>{
-        xhr.abort()
-        complete(new Error('request aborted'))
+
+    let isCancelled = false
+    return {
+        cancel(){
+            if(isCompleted || isCancelled) return
+            isCancelled = true
+            xhr.abort()
+            complete(new Error('request aborted'))
+        },
+        get completed(){
+            return isCompleted
+        },
+        get cancelled(){
+            return isCancelled
+        }
     }
 }
 
@@ -113,10 +125,30 @@ http.delete = function(url, data, done){
 //http.oncomplete = function(){}
 export default http
 
-export function resource(baseUrl = ''){
+/**
+ * @param {string} baseUrl
+ * @param {(baseUrl:string, id:any, action:string) => {url:string, method?:='GET',data?:any, before?: (done,err,data)=>void}} buildRequest
+ * @export
+ */
+export function resource(baseUrl = './', buildRequest){
     const rootUrl = baseUrl[baseUrl.length-1] === '/' 
         ? baseUrl
         : baseUrl + '/'
+    const fn = buildRequest || ((rootUrl, id, action) => {
+        let before = null
+        if(action === 'remove'){
+            before = function(done, err, data){
+                if(err) return done(err)
+                if(this.status !== 200) {
+                    return done(new Error('http error: ' + this.status + '\n' + this.statusText))
+                }
+                done(null, data)
+            }
+        }
+        let url = rootUrl
+        if(id) url += id
+        return {url, before}
+    })
     
     function parseJSON(xhr, err, done){
         if(err) return done(err)
@@ -134,37 +166,37 @@ export function resource(baseUrl = ''){
             done(error)
         }
     }
+
+    function makeRequest({action, done, data, id, method = 'GET'}){
+        let req = fn(rootUrl, id, action)
+        req.method = req.method || method
+        req.data = data
+        delete req.done
+        if(req.before){
+            req.done = req.before.bind(done) 
+        }else{
+            req.done = function (err) {
+                parseJSON(this, err, done)
+            }
+        }
+        return http(req)
+    }
+
     return {
         items(filter, done){
-            return http.get(rootUrl, filter, function(err){
-                parseJSON(this, err, done)
-            })
+            return makeRequest({action: 'items', done, data: filter})
         },
         get(id, done){
-            let url = rootUrl  + id
-            return http.get(url, function(err){
-                parseJSON(this, err, done)
-            })
+            return makeRequest({action: 'get', done, id})
         },
         add(data, done){
-            return http.put(rootUrl, data, function(err){
-                parseJSON(this, err, done)
-            })
+            return makeRequest({action: 'add', done, method: 'PUT'})
         },
         update(id, data, done){
-            let url = rootUrl  + id
-            return http.post(url, data, function(err){
-                parseJSON(this, err, done)
-            })
+            return makeRequest({action: 'update', done, data, id, method: 'POST'})
         },
         remove(id, done){
-            let url = rootUrl  + id
-            return http.delete(url, function (err) {
-                if(err) return done(err)
-                if(this.status !== 200) {
-                    return done(new Error('http error: ' + this.status + '\n' + this.statusText))
-                }
-            })
+            return makeRequest({action: 'remove', done, id, method: 'DELETE'})
         }
     }
 }
