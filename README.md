@@ -40,13 +40,17 @@ import * as riot from 'riot'
 
 which may make your existing code not work
 
-- 'show/hide' has different scope from 'if' directive, see page-home.tag
+- 'show/hide' has different scope from 'if' directive, see src/app/tags/pages/page-home.html
 
 riot@3.0.5
 
 - VIRTUAL tag is not virtual and still has a virtual element left on dom.
 
 see https://jsfiddle.net/wgs22gkg/2/
+riot@3.0.5
+
+- 'show' not work as expected
+see src/app/tags/components/collapse/collapse-item.html
 riot@3.0.5
 
 ## License

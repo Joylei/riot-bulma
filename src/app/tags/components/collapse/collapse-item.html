@@ -1,0 +1,38 @@
+<collapse-item>
+    <div class="card collapse-item { 'collapse-open': selected }">
+        <div class="card-header" onclick="{ parent.toggle(this) }">
+            <h3 class="card-header-title">{ opts.title }</h3>
+            <span class="card-header-icon">
+                <i class="fa fa-angle-right"></i>
+            </span>
+        </div>
+        <div show="{ selected }" class="card-content" style="{ height: getHeight() }">
+            <div class="card-content-box">
+                <yield />
+            </div>
+        </div>
+    </div>
+    <script>
+        //show not work as expected, bug???
+        this.selected = false
+        this.getHeight = () => {
+            let num = Number(opts.height)
+            if (!isNaN(num)) {
+                return num + 'px'
+            }
+            return 'auto !important'
+        }
+    </script>
+    <style type="text/less">
+        .collapse-item .card-header-icon{ transition: transform 300ms; } 
+        .collapse-item .card-header{
+            cursor:pointer; user-select:none;
+        }
+        .collapse-item .card-header-icon i{ font-size:14px !important; } 
+        .collapse-item.collapse-open .card-header-icon{
+            transform: rotate(90deg);
+        } 
+        .collapse-item .card-content{ overflow:hidden; padding:0; transition: all 300ms; } 
+        .collapse-item .card-content-box{ padding:15px; }
+    </style>
+</collapse-item>

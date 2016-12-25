@@ -1,0 +1,36 @@
+<collapse>
+    <div class="collapse">
+        <yield />
+    </div>
+    <script>
+        import './collapse-item.html'
+        import {isArray} from '../../../../shared/util'
+
+        function select(item){
+            let tags = this.tags['collapse-item']
+            tags = isArray(tags) ? tags : (tags ? [tags] : [])
+            if(opts.accordion){
+                if(!item.selected){
+                    tags.forEach(x=>{
+                        if(x == item){
+                            x.selected = true
+                        }else{
+                            x.selected = false
+                        }
+                    })
+                }else{
+                    item.selected = false
+                }
+            }else{
+                item.selected = !item.selected
+            }
+            this.update()
+        }
+
+        this.toggle = (item)=>{
+            return (e)=>{
+                select.call(this,item)
+            }
+        }
+    </script>
+</collapse>

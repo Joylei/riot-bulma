@@ -1,10 +1,51 @@
 <page-collapse>
     <page>
-        <yield to="title"></yield>
+        <yield to="title">Collapse</yield>
         <yield to="content">
+            <div class="columns">
+                <div class="column is-6">
+                    <collapse>
+                        <collapse-item title="{ '明月几时有' }">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.</p>
+                        </collapse-item>
+                        <collapse-item title="{ '把酒问青天' }">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.</p>
+                        </collapse-item>
+                        <collapse-item title="{ '今夕是何年' }">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.</p>
+                        </collapse-item>
+                    </collapse>
+                </div>
+                <div class="column is-6">
+                    <collapse accordion="{ true }">
+                        <collapse-item title="{ '明月几时有' }">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.</p>
+                        </collapse-item>
+                        <collapse-item title="{ '把酒问青天' }">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.</p>
+                        </collapse-item>
+                        <collapse-item title="{ '今夕是何年' }">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.</p>
+                        </collapse-item>
+                    </collapse>
+                </div>
+            </div>
         </yield>
     </page>
     <script>
         import '../components/page/page.html'
+        import '../components/collapse/collapse.html'
     </script>
 </page-collapse>
