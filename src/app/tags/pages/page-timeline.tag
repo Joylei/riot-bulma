@@ -1,4 +1,5 @@
 import '../components/page/page.tag'
+import '../components/timeline/timeline.tag'
 
 <page-timeline>
 
@@ -6,7 +7,7 @@ import '../components/page/page.tag'
         <yield to="title">Timeline</yield>
         <yield to="content">
 <timeline>
-    <timeline-item :label="true">
+    <timeline-item label="{ true }">
       <span class="tag is-danger">
         10 Feb. 2014
       </span>
@@ -64,7 +65,7 @@ import '../components/page/page.tag'
             </timeline-item>
             <!-- END timeline item -->
             <!-- timeline time label -->
-            <timeline-item :label="true">
+            <timeline-item label="{ true }">
                   <span class="tag is-primary">
                     3 Jan. 2014
                   </span>
