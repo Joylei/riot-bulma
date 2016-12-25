@@ -1,0 +1,42 @@
+<page-pagination>
+    <page>
+        <yield to="title">Pagination</yield>
+        <yield to="content">
+            <div class="box no-shadow">
+                <p class="title">Pagination</p>
+                <p class="subtitle">Pagination Component</p>
+                <p>Think different. Data driven instead of directly operations on dom.</p>
+                <hr>
+                <div class="content { 'is-loading': parent.loading }">
+                    current page is { parent.page }
+                </div>
+                <pagination index="{ parent.page }" count="{ parent.total }" loading="{ parent.loading }" page="{ parent.loadPage }"></pagination>
+            </div>
+        </yield>
+    </page>
+    <script>
+        import '../components/page/page.html'
+        import '../components/pagination.html'
+
+        import watcher from '../../lib/nprogress'
+
+        this.total = 18 //total pages
+        this.page = 1 //current page
+        this.loading = false
+        this.loadPage = (index) => {
+            watcher.inc()
+            this.loading = true
+            this.page = index
+            this.update()
+
+            //simulate data loading...
+            setTimeout(() => {
+                this.loading = false
+                this.update()
+                watcher.dec()
+            }, 1500)
+        }
+
+        this.loadPage(1)
+    </script>
+</page-pagination>

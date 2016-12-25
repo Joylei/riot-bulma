@@ -12,23 +12,15 @@ module.exports = {
         'app': [path.resolve(dir_app, 'app.js')]
     },
     resolve: {
-        extensions: ['', '.js', '.tag'],
+        extensions: ['', '.js', '.html'],
         fallback: [dir_node_modules]
     },
     module: {
         preLoaders: [{
-            test: /\.(js|tag)$/,
+            test: /\.(js)$/,
             loader: 'eslint',
             include: dir_src,
             exclude: dir_node_modules
-        }, {
-            test: /\.tag$/,
-            loader: 'riotjs',
-            include: dir_src,
-            exclude: dir_node_modules,
-            query: {
-                type: 'es6'
-            }
         }],
         loaders: [
             //styles
@@ -42,7 +34,16 @@ module.exports = {
                 test: /\.css$/,
                 loader: 'style!css'
             }, {
-                test: /\.(js|tag)$/,
+                test: /tags\/.*?\.html$/,
+                loader: 'riotjs',
+                include: dir_src,
+                exclude: dir_node_modules,
+                query: {
+                    type: 'es6',
+                    ext: 'html'
+                }
+            }, {
+                test: /\.js$/,
                 loader: 'babel',
                 include: dir_src,
                 exclude: dir_node_modules

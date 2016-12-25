@@ -13,7 +13,7 @@ const DEFAULT_PAGE = 'home'
  *  home => home
  * 
  * with parameters:
- *  user/:id/:action => {page:'home',
+ *  user//*//* => {page:'home',
  *       query: function(id,action){
  *          return { id,action}
  *      }, title:function(tag){
