@@ -1,6 +1,6 @@
 <pagination>
     <nav class="pagination">
-    <a class="{'is-disabled':opts.index===1}" class="button" onclick="{ page.bind(null, opts.index-1) }">{ opts.firstText || 'First' }</a>
+    <a class="{'is-disabled':opts.index===1}" class="button" onclick="{ page.bind(null, opts.index-1) }">{ opts.firstText || 'Prev' }</a>
     <a class="{'is-disabled':opts.index===opts.count}" class="button" onclick="{ page.bind(null, opts.index+1) }">{ opts.nextText || 'Next' }</a>
     <ul>
         <li if="{ opts.count>0 && opts.index>1 }" onclick="{ page.bind(null, 1) }">
