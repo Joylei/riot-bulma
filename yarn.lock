@@ -3537,9 +3537,9 @@ riot-compiler@^3.0.0, riot-compiler@^3.1.1:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/riot-compiler/-/riot-compiler-3.1.1.tgz#f456934bb863231b21807fa185a5a9edaf062008"
 
-riot-echarts@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/riot-echarts/-/riot-echarts-1.0.1.tgz#9f6a11271d99b10b764f59d0a8c5c2930b5760bd"
+riot-echarts@1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/riot-echarts/-/riot-echarts-1.0.2.tgz#044c2c54be66161e330ce277217b99ca613dcdfe"
 
 riot-observable@^3.0.0:
   version "3.0.0"
