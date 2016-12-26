@@ -1,7 +1,7 @@
 {
   "name": "riot-bulma",
   "version": "0.1.0",
-  "description": "combine RIOT and Bluma to a super weapon",
+  "description": "combine RIOT and Bulma to a super weapon",
   "main": "src/server/index.js",
   "scripts": {
     "start": "node src/server/index.js",
@@ -18,6 +18,18 @@
     "type": "git",
     "url": "git+https://github.com/Joylei/riot-bulma.git"
   },
+  "keywords": [
+    "riot",
+    "riotjs",
+    "riot.js",
+    "bulma",
+    "riot-bulma",
+    "css framework",
+    "webpack",
+    "koa",
+    "adminui",
+    "ui framework"
+  ],
   "license": "MIT",
   "devDependencies": {
     "babel-loader": "^6.2.10",

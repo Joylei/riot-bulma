@@ -1,6 +1,6 @@
 # riot-bulma
 
-combine RIOT and Bluma
+combine RIOT and Bulma
 
 ![demo](./demo.png)
 
