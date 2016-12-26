@@ -21,6 +21,15 @@ module.exports = {
             loader: 'eslint',
             include: dir_src,
             exclude: dir_node_modules
+        }, {
+            test: /tags\/.*?\.html$/,
+            loader: 'riotjs',
+            include: dir_src,
+            exclude: dir_node_modules,
+            query: {
+                type: 'es6',
+                ext: 'html'
+            }
         }],
         loaders: [
             //styles
@@ -35,13 +44,9 @@ module.exports = {
                 loader: 'style!css'
             }, {
                 test: /tags\/.*?\.html$/,
-                loader: 'riotjs',
-                include: dir_src,
-                exclude: dir_node_modules,
-                query: {
-                    type: 'es6',
-                    ext: 'html'
-                }
+                loader: 'babel',
+                nclude: dir_src,
+                exclude: dir_node_modules
             }, {
                 test: /\.js$/,
                 loader: 'babel',

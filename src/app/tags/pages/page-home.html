@@ -1,3 +1,5 @@
+import '../components/page/page.html'
+
 <page-home>
     <page>
         <yield to="title">
@@ -129,7 +131,6 @@
         </yield>
     </page>
     <script>
-        import '../components/page/page.html'
         this.index = 0
         this.change = (index, e) => {
             e.preventDefault()

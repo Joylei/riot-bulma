@@ -1,3 +1,7 @@
+import '../components/page/page.html'
+import '../components/pagination.html'
+
+import watcher from '../../lib/nprogress'
 <page-pagination>
     <page>
         <yield to="title">Pagination</yield>
@@ -15,11 +19,6 @@
         </yield>
     </page>
     <script>
-        import '../components/page/page.html'
-        import '../components/pagination.html'
-
-        import watcher from '../../lib/nprogress'
-
         this.total = 18 //total pages
         this.page = 1 //current page
         this.loading = false

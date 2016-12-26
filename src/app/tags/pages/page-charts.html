@@ -1,51 +1,50 @@
+import '../components/page/page.html'
+import 'riot-echarts'
+
 <page-charts>
     <page>
         <yield to="title">Charts</yield>
         <yield to="content">
-            <h2 class="title is-2">charts with ECharts</h2>
-            <h3 class="title is-3">
-                For usage, see <a href="https://github.com/Joylei/riot-echarts" target="_blank">riot-echarts</a>
-            </h3>
-            <p class="content">
-                    You can provide color table for charts by
-                    \{type:'pie', data: YOUR_DATA, color:['#ABC', '#DEF']\}
-            </p>
-            <ul>
-                <li>
-                    <h1>Pie</h1>
-                    <echart simple="{ {type:'pie', data: parent.data} }"></echart>
-                </li>
-                <li>
-                    <h1>Line</h1>
-                    <echart simple="{ {type:'line', data: parent.data} }"></echart>
-                </li>
-                <li>
-                    <h1>Bar</h1>
-                    <echart simple="{ {type:'bar', data: parent.data} }"></echart>
-                </li>
-            </ul>
-            <p>
+            <section class="section">
+                <h2 class="title is-2">charts with ECharts</h2>
+                <h3 class="title is-3">
+                    For usage, see <a href="https://github.com/Joylei/riot-echarts" target="_blank">riot-echarts</a>
+                </h3>
+                <p class="content">
+                    You can provide color table for charts by \{type:'pie', data: YOUR_DATA, color:['#ABC', '#DEF']\}
+                </p>
+            </section>
+            <div class="section">
+                <div class="columns">
+                    <div class="column is-4">
+                        <h1>Pie</h1>
+                        <echart simple="{ {type:'pie', data: parent.data} }"></echart>
+                    </div>
+                    <div class="column is-4">
+                        <h1>Line</h1>
+                        <echart simple="{ {type:'line', data: parent.data} }"></echart>
+                    </div>
+                    <div class="column is-4">
+                        <h1>Bar</h1>
+                        <echart simple="{ {type:'bar', data: parent.data} }"></echart>
+                    </div>
+                </div>
+            </div>
+            <section class="section">
                 <h1>Thenable data</h1>
                 <echart simple="{ {type:'bar', data: parent.thenable} }"></echart>
-            </p>
-            <p>
+            </section>
+            <section class="section">
                 <h1>Callback data</h1>
                 <echart simple="{ {type:'bar', data: parent.callback} }"></echart>
-            </p>
-
-            <p>
+            </section>
+            <section class="section">
                 <h1>Direct Option</h1>
                 <echart option="{ parent.option }"></echart>
-            </p>
+            </section>
         </yield>
     </page>
     <script>
-        import '../components/page/page.html'
-        import 'riot-echarts'
-
-        //have to manully inject style, WTF?
-        riot.util.styleManager.inject()
-
         var self = this
         this.data = [
             ['name', 'value'],
@@ -56,14 +55,14 @@
             ['e', 55]
         ]
         this.thenable = {
-            then: function(onSuccess, onError){
-                setTimeout(function(){
+            then: function (onSuccess, onError) {
+                setTimeout(function () {
                     onSuccess(self.data)
                 }, 3000)
             }
         }
-        this.callback = function(cb){
-            setTimeout(function(){
+        this.callback = function (cb) {
+            setTimeout(function () {
                 cb(null, self.data)
             }, 3000)
         }
@@ -72,43 +71,32 @@
                 trigger: 'item',
                 formatter: '{a} <br/>{b} : {c} ({d}%)'
             },
-            series: [
-                {
-                    name: 'Data',
-                    type: 'pie',
-                    radius: '55%',
-                    center: ['50%', '50%'],
-                    data: [
-                        { name: 'a', value: 10 },
-                        { name:'b', value:20 },
-                        {name:'c', value: 25},
-                        {name:'d', value: 15},
-                        {name:'e', value:55}
-                    ]
-                }
-            ]
+            series: [{
+                name: 'Data',
+                type: 'pie',
+                radius: '55%',
+                center: ['50%', '50%'],
+                data: [{
+                    name: 'a',
+                    value: 10
+                }, {
+                    name: 'b',
+                    value: 20
+                }, {
+                    name: 'c',
+                    value: 25
+                }, {
+                    name: 'd',
+                    value: 15
+                }, {
+                    name: 'e',
+                    value: 55
+                }]
+            }]
         }
-        
     </script>
     <style type="text/less">
-        echart {
-            display:block;
-            width: 100%;
-            height: 300px;
-        }
-        ul {
-            width: 100%;
-            display:block;
-            list-style:none;
-            margin:0;
-            padding:0;
-        }
-        ul li{
-            float:left;
-            display: inline-block;
-            margin:0;
-            padding:0;
-            width: 33.3%;
-        }
+        echart { display:block; width: 100%; height: 300px; } ul { width: 100%; display:block; list-style:none; margin:0; padding:0;
+        } ul li{ float:left; display: inline-block; margin:0; padding:0; width: 33.3%; }
     </style>
 </page-charts>

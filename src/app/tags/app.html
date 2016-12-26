@@ -1,19 +1,18 @@
+import route from '../route'
+import {isFunction} from '../../shared/util'
+import store, {Action_Login, Action_Logout, Action_Toast} from '../store'
+import './components/page/header.html'
+import './components/page/sidebar.html'
+import './components/modal/toast.html'
 <app>
     <header if="{ isLoggedIn }"></header>
     <section class="page-container">
         <sidebar if="{ isLoggedIn }"></sidebar>
-        <div class="page" data-is="{ page }" query="{ query }" ref="page"></div>
+        <div class="page" ref="page"></div>
         <toast items="{ toasts }"></toast>
     </section>
 
     <script>
-        import route from '../route'
-        import {isFunction} from '../../shared/util'
-        import store, {Action_Login, Action_Logout, Action_Toast} from '../store'
-        import './components/page/header.html'
-        import './components/page/sidebar.html'
-        import './components/modal/toast.html'
-        
         const baseUrl='#!/', homeUrl='#!/',loginUrl = '#!/login'
 
         function getHash(){
@@ -43,16 +42,12 @@
             const name = 'page-' + conf.page
             require(`./pages/${name}.html`) //webpack dynamic require; otherwise you have to import all pages in advance
 
-            //have to manually inject style???
-            //not sure what happened, a bug???
-            riot.util.styleManager.inject()
-
             //it may be a good idea to use mount directly here
             this.page = name
             this.query = query
-            this.update()
-
-            return this.refs.page //return the mounted page tag
+            return riot.mount(this.refs.page, this.page, { query })[0]
+            //this.update()
+            //return this.refs.page //return the mounted page tag
         }, baseUrl)
 
         this.on('unmount', ()=> stop())

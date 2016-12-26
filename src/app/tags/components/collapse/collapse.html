@@ -1,11 +1,10 @@
+import './collapse-item.html'
+import {isArray} from '../../../../shared/util'
 <collapse>
     <div class="collapse">
         <yield />
     </div>
     <script>
-        import './collapse-item.html'
-        import {isArray} from '../../../../shared/util'
-
         function select(item){
             let tags = this.tags['collapse-item']
             tags = isArray(tags) ? tags : (tags ? [tags] : [])
