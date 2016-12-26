@@ -1,31 +1,76 @@
+import  {isFunction} from '../../../../shared/util'
+import '../raw.html'
 <modal>
-    <div class="modal is-active">
-        <div class="modal-background" onclick="{ unmount }"></div>
-        <button class="modal-close" onclick="{ unmount  }"></button>
-        <div class="modal-content">
+    <div class="modal { 'is-active':data.active }">
+        <div class="modal-background" onclick="{ data.onclose }"></div>
+        <button class="modal-close" onclick="{ data.onclose  }"></button>
+        <div class="modal-content" style="{ getStyle() }">
             <div class="box">
-            <p if="{ title }" class="title is-5">{ title }</p>
-            <p if="{ content }" class="is-bottom-20">{ content }</p>
+                <p if="{ data.title }" class="title is-5">{ data.title }</p>
+                <p if="{ data.content }" class="is-bottom-20">{ data.content }</p>
+                <div class="section" if="{ data.html }">
+                    <raw html="{ data.html }"></raw>
+                </div>
+
+                <hr class="modal-hr">
+                <nav class="level">
+                    <div class="level-left"></div>
+                    <div class="level-right is-mobile">
+                    <p class="level-item">
+                        <a each="{ btn in data.buttons }" onclick="{ btn.onclick }"
+                            class="button {'is-right-10':opts.mode!=='alert'} { btn.classes }">
+                            <span class="icon is-small" if="{ btn.icon }">
+                            <i class="fa fa-{ btn.icon }"></i></span>
+                            { btn.title }
+                        </a>
+                    </p>
+                    </div>
+                </nav>
             </div>
+
         </div>
     </div>
-    <style lang="less">
-    .modal {
-    opacity: 1;
-    transition: opacity 300ms;
-    }
-    .modal .modal-background{
-    background-color: rgba(0,0,0,0.7)
-    }
-    .modal .box{
-    padding:15px;
-    }
-    .modal-hr{
-    margin:15px -15px;
-    }
-    .modal a .icon {
-        margin-left:0 !important;
-        margin-right:5px !important;
-    }
+    <script>
+        const RE_WIDTH = /^\s*?((\d+(\.\d+)?(px|em|%))|auto)\s*?(\s+?!important)?\s*?$/ig
+
+        Object.defineProperty(this, 'data', {
+            get(){
+                return opts.data || {}
+            }
+        })
+
+        /**
+         * opts.title: string
+         * opts.content: string
+         * opts.html: string
+         * opts.mode?: string 
+         * opts.buttons?: Array<{ icon?:string, title: string , href?:string, onclick:(e)=>any }>
+         */
+        this.getStyle = ()=>{
+            return RE_WIDTH.test(this.data.width) ? 'width:'+this.data.width : ''
+        }
+    </script>
+    <style type="text/less">
+        .modal {
+            opacity: 1;
+            transition: opacity 300ms;
+        }
+        
+        .modal .modal-background {
+            background-color: rgba(0, 0, 0, 0.7)
+        }
+        
+        .modal .box {
+            padding: 15px;
+        }
+        
+        .modal-hr {
+            margin: 15px -15px;
+        }
+        
+        .modal a .icon {
+            margin-left: 0 !important;
+            margin-right: 5px !important;
+        }
     </style>
 </modal>

@@ -1,11 +1,108 @@
 import '../components/page/page.html'
+import '../components/modal/modal.html'
+import store from '../../store'
+import modal, { Action_Show_Modal, Action_Hide_Modal } from '../../lib/modal'
 <page-modal>
     <page>
-        <yield to="title"></yield>
+        <yield to="title">Modal</yield>
         <yield to="content">
+            <div class="box no-shadow">
+      <p class="title">Modal</p>
+      <p class="subtitle">
+          Modal dialogs.
+      </p>
+      <section class="section">
+          <p>alert: store.showAlert({})</p>
+          <p>confirm: store.showConfirm({})</p>
+          <p>custom: store.showModal({})</p>
+      </section>
+      <p>
+        <a class="button is-primary" onclick="{ parent.showAlert }">Show Alert</a>
+        <a class="button is-info" onclick="{ parent.showConfirm }">Show Confirm</a>
+        <a class="button is-danger" onclick="{ parent.showCustomModal }">Show Custom Modal</a>
+        <a class="button is-warning" onclick="{ parent.showCustomWidth }">Custom Width</a>
+      </p>
+      <br>
+      <br>
+      <p class="subtitle">Try browser go forward/back for global modals.</p>
+      <p>
+        <a class="button is-primary" onclick="{ parent.showGlobalAlert }">global alert</a>
+        <a class="button is-info" onclick="{ parent.showGlobalConfirm }">global confirm</a>
+      </p>
+
+    
+  </div>
+  <modal data="{ parent.localStore.modal }"></modal>
         </yield>
+        
     </page>
-    <script>
-       
+    <script> 
+        this.localStore = modal(riot.observable())
+        this.localStore.on(Action_Show_Modal, ()=> this.update())
+        this.localStore.on(Action_Hide_Modal, ()=> this.update())
+
+        this.showGlobalAlert = (e)=>{
+            e.preventDefault()
+           //alert('clicked')
+           store.showAlert('Global alert', 'hello alert')
+        }
+
+        this.showGlobalConfirm = (e) =>{
+           e.preventDefault()
+           store.showConfirm('Global confirm', 'you choose yes or no?', function(result){
+               store.toast({type:'info', title: 'your choice is :'+ (result? 'yes': 'no')})
+           })
+       }
+
+       this.showAlert = (e)=>{
+           e.preventDefault()
+           //alert('clicked')
+           this.localStore.showAlert('hello', 'hello alert')
+       }
+
+       this.showConfirm = (e) =>{
+           e.preventDefault()
+           this.localStore.showConfirm('YESNO', 'you choose yes or no?', function(result){
+               store.toast({type:'info', title: 'your choice is :'+ (result? 'yes': 'no')})
+           })
+       }
+
+       this.showCustomModal =(e) =>{
+           e.preventDefault()
+           this.localStore.showModal({
+               title: 'Payment',
+               content: 'Choose your payment',
+               buttons:[
+                   {
+                        title:'Pay',
+                        classes: 'is-primary',
+                        onclick:(e)=>{
+                            store.toast({type: 'success', title: 'Payment is successful!'})
+                        }
+                   },
+                   {
+                       title: 'Return',
+                       classes:'is-light',
+                       onclick:(e)=>{
+                            store.toast({type: 'danger', title: 'Payment is given up!'})
+                        }
+                   }
+               ]
+           })
+       }
+       this.showCustomWidth = (e)=>{
+           e.preventDefault()
+           this.localStore.showModal({
+               title: 'Custom width',
+               content: 'Custom width = 240px',
+               width: '240px',
+               buttons:[
+                   {
+                       title: 'OK',
+                       classes: 'is-primary'
+                   }
+               ]
+           })
+       }
     </script>
 </page-modal>

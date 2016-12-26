@@ -1,15 +1,18 @@
 import route from '../route'
 import {isFunction} from '../../shared/util'
-import store, {Action_Login, Action_Logout, Action_Toast} from '../store'
+import store, {Action_Login, Action_Logout, Action_Toast, 
+    Action_Show_Modal, Action_Hide_Modal} from '../store'
 import './components/page/header.html'
 import './components/page/sidebar.html'
 import './components/modal/toast.html'
+import './components/modal/modal.html'
 <app>
     <header if="{ isLoggedIn }"></header>
     <section class="page-container">
         <sidebar if="{ isLoggedIn }"></sidebar>
         <div class="page" ref="page"></div>
         <toast items="{ toasts }"></toast>
+        <modal data="{ modal }"></modal>
     </section>
 
     <script>
@@ -75,6 +78,18 @@ import './components/modal/toast.html'
         this.toasts = store.toasts
         store.on(Action_Toast, ()=>{
             this.toasts = store.toasts
+            this.update()
+        })
+
+        this.modal = store.modal
+        store.on(Action_Show_Modal, (modal)=>{
+            console.log(modal)
+            this.modal = modal
+            this.update()
+        })
+        store.on(Action_Hide_Modal, (modal)=>{
+            console.log(modal)
+            this.modal = modal
             this.update()
         })
     </script>

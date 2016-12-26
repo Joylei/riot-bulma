@@ -1,8 +1,10 @@
 import {observable} from 'riot'
+import modal from './lib/modal'
 
 export const Action_Login = 'login'
 export const Action_Logout = 'logout'
 export const Action_Toast = 'toast'
+export {Action_Show_Modal,Action_Hide_Modal} from './lib/modal'
 
 const state = {
     /**
@@ -51,6 +53,8 @@ const state = {
         }
     }
 }
+
+modal(state)
 
 // function createStore(obj){
 //     let store = observable(obj)
