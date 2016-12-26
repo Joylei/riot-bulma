@@ -1,7 +1,7 @@
 {
   "name": "riot-bulma",
   "version": "0.1.0",
-  "description": "",
+  "description": "combine RIOT and Bluma to a super weapon",
   "main": "src/server/index.js",
   "scripts": {
     "start": "node src/server/index.js",
