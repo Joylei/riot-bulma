@@ -48,6 +48,10 @@ import './components/modal/modal.html'
             //it may be a good idea to use mount directly here
             this.page = name
             this.query = query
+            // const old = this.refs.page._tag;
+            // if(old){
+            //     old.unmount(true)
+            // }
             return riot.mount(this.refs.page, this.page, { query })[0]
             //this.update()
             //return this.refs.page //return the mounted page tag
@@ -59,18 +63,16 @@ import './components/modal/modal.html'
         this.isLoggedIn = store.isLoggedIn
         store.on(Action_Login, ()=>{
             this.isLoggedIn = store.isLoggedIn
+            this.update()
             if(isLoginUrl()){
                 window.location.href = homeUrl
-            }else{
-                this.update()
             }
         })
         store.on(Action_Logout, ()=>{
             this.isLoggedIn = store.isLoggedIn
+            this.update()
             if(!isLoginUrl()){
                 window.location.href = loginUrl
-            }else{
-                this.update()
             }
         })
 
@@ -82,16 +84,12 @@ import './components/modal/modal.html'
         })
 
         this.modal = store.modal
-        store.on(Action_Show_Modal, (modal)=>{
-            console.log(modal)
+        const updateModal = (modal)=>{
             this.modal = modal
             this.update()
-        })
-        store.on(Action_Hide_Modal, (modal)=>{
-            console.log(modal)
-            this.modal = modal
-            this.update()
-        })
+        }
+        store.on(Action_Show_Modal, updateModal)
+        store.on(Action_Hide_Modal, updateModal)
     </script>
 
     <style type="text/less">
