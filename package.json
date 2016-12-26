@@ -45,7 +45,7 @@
     "nprogress": "^0.2.0",
     "riot": "^3.0.5",
     "riot-compiler": "^3.1.1",
-    "riot-echarts": "1.0.2",
+    "riot-echarts": "1.0.3",
     "riot-route": "^3.0.2",
     "riotjs-loader": "git+https://github.com/Joylei/riotjs-loader.git",
     "sass-loader": "^4.1.0",
