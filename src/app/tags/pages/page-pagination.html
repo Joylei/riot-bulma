@@ -1,7 +1,7 @@
 import '../components/page/page.html'
 import '../components/pagination.html'
 
-import watcher from '../../lib/nprogress'
+import preloader from '../../lib/preloader'
 <page-pagination>
     <page>
         <yield to="title">Pagination</yield>
@@ -23,7 +23,7 @@ import watcher from '../../lib/nprogress'
         this.page = 1 //current page
         this.loading = false
         this.loadPage = (index) => {
-            watcher.inc()
+            preloader.inc()
             this.loading = true
             this.page = index
             this.update()
@@ -32,7 +32,7 @@ import watcher from '../../lib/nprogress'
             setTimeout(() => {
                 this.loading = false
                 this.update()
-                watcher.dec()
+                preloader.dec()
             }, 1500)
         }
 

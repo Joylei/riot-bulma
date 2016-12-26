@@ -1,4 +1,4 @@
-import watcher from './lib/nprogress'
+import preloader from './lib/preloader'
 import route from 'riot-route'
 import {
     isString, isFunction,
@@ -71,7 +71,7 @@ export default function setupRoute(onRouteRequested, baseUrl = '#!') {
         conf.title = conf.title || DEFAULT_TITLE
         const query = conf.query || noop
         route(path, (...args) => {
-            watcher.inc()
+            preloader.inc()
             try{
                 const result = query.apply(null, args) || {}
                 const tag = onRouteRequested(conf, result)
@@ -79,7 +79,7 @@ export default function setupRoute(onRouteRequested, baseUrl = '#!') {
                 //console.log(tag)
                 window.document.title = (isFunction(conf.title) ? conf.title(tag) : conf.title) || DEFAULT_TITLE
             }finally{
-                watcher.dec()
+                preloader.dec()
             }
         })
     })

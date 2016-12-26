@@ -2,7 +2,7 @@ import './less/app.less'
 
 import * as riot from 'riot'
 import './tags/app.html'
-import './lib/nprogress'
+import './lib/preloader'
 
 riot.mount('app')
 

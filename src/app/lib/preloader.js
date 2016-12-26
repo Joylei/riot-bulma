@@ -4,7 +4,7 @@ import {observable} from 'riot'
 import http from './http'
 //import {ready} from './dom'
 
-function createWatcher(){
+function createLoader(){
     //pending operations
     let pendingCount = 0
     let timerId
@@ -28,11 +28,11 @@ function createWatcher(){
 
         pendingCount = 0
         if(!timerId){
-            let eclapased = new Date() - startTime
+            let eclapsed = new Date() - startTime
             timerId = setTimeout(()=>{
                 NProgress.done()
                 //NProgress.remove()
-            }, eclapased > 1000 ? 300 : 600)
+            }, eclapsed > 1000 ? 300 : 600)
         }
     }
 
@@ -54,11 +54,11 @@ function createWatcher(){
     })
 }
 
-let watcher = createWatcher()
+let loader = createLoader()
 
 //hook http events
-http.onstart = ()=> watcher.inc()
-http.oncomplete = ()=> watcher.dec()
+http.onstart = ()=> loader.inc()
+http.oncomplete = ()=> loader.dec()
 
-export default watcher
+export default loader
 
