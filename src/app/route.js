@@ -9,6 +9,14 @@ export const DEFAULT_TITLE = 'riot-bulma'
 const DEFAULT_PAGE = 'home'
 
 /**
+ * RouteItem:{
+ *    page:string, 
+ *    noPreloader=false,
+ *    query?:(...args)=>any,
+ *    title?:string|(tag:RiotTag)=>string
+ * }
+ * routeTable: { [path:string]: string | RouteItem }
+ *
  * simple mapping:
  *  home => home
  * 
@@ -39,7 +47,7 @@ const routeTable = {
     '/icons': 'icons',
     '/image': 'image',
     '/level': 'level',
-    '/login': 'login',
+    '/login': { page:'login', noPreloader:true },
     '/mediaobject': 'mediaobject',
     '/message': 'message',
     '/modal': 'modal',
@@ -71,7 +79,11 @@ export default function setupRoute(onRouteRequested, baseUrl = '#!') {
         conf.title = conf.title || DEFAULT_TITLE
         const query = conf.query || noop
         route(path, (...args) => {
-            preloader.inc()
+            const hasLoader = !conf.noPreloader
+            if(hasLoader){
+                preloader.inc()
+            }
+
             try{
                 const result = query.apply(null, args) || {}
                 const tag = onRouteRequested(conf, result)
@@ -79,7 +91,9 @@ export default function setupRoute(onRouteRequested, baseUrl = '#!') {
                 //console.log(tag)
                 window.document.title = (isFunction(conf.title) ? conf.title(tag) : conf.title) || DEFAULT_TITLE
             }finally{
-                preloader.dec()
+                if(hasLoader){
+                    preloader.dec()
+                }
             }
         })
     })
