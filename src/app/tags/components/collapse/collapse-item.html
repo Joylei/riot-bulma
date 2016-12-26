@@ -6,7 +6,7 @@
                 <i class="fa fa-angle-right"></i>
             </span>
         </div>
-        <div show="{ selected }" class="card-content" style="height:{  getHeight() };">
+        <div class="card-content {hidden:!selected}" style="height:{  getHeight() };">
             <div class="card-content-box">
                 <yield />
             </div>
@@ -34,5 +34,9 @@
         } 
         .collapse-item .card-content{ overflow:hidden; padding:0; transition: all 300ms; } 
         .collapse-item .card-content-box{ padding:15px; }
+
+        .hidden{
+            display: none !important;
+        }
     </style>
 </collapse-item>
