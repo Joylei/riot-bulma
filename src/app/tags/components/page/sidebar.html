@@ -104,7 +104,11 @@ import '../menu/menu.html'
 
         this.logout = (e)=>{
             e.preventDefault()
-            store.logout()
+            store.showConfirm('Log Off', 'Are you sure you want to log off?',(result)=>{
+                if(result){
+                    store.logout()
+                }
+            })
         }
     </script>
 

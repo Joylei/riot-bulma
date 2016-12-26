@@ -34,7 +34,12 @@ import store from '../../../store'
         this.logout = (e) =>{
             e.preventDefault()
             //alert('logout')
-            store.logout()
+            
+            store.showConfirm('Log Off', 'Are you sure you want to log off?',(result)=>{
+                if(result){
+                    store.logout()
+                }
+            })
         }
     </script>
     <style type="text/less">
