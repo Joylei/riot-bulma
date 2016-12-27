@@ -14,7 +14,7 @@ import store from '../../../store'
                 <span></span>
             </span>
             <div id="nav-menu" class="nav-right nav-menu {'is-active': status}">
-                <a class="nav-item" href="#!/"><figure class="image is-24x24 is-right-5"><img class="is-circle" src="{ img_photo }"></figure><span>James Bond</span></a>
+                <a class="nav-item is-active" href="#!/"><figure class="image is-24x24 is-right-5"><img class="is-circle" src="{ img_photo }"></figure><span>James Bond</span></a>
                 <a class="nav-item" onclick="{ logout }"><span class="icon is-small"><i class="fa fa-power-off"></i></span>Log Off</a>
             </div>
             </nav>
@@ -45,6 +45,9 @@ import store from '../../../store'
     <style type="text/less">
         section.hero{
             background-color: #009781!important;
+        }
+        .nav-item > .icon{
+            vertical-align: middle;
         }
     </style>
 </header>

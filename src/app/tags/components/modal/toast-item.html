@@ -6,7 +6,7 @@
     <script>
         const icons = {'success': 'check', 'info': 'info', 'warning': 'warning', 'danger': 'close'}
         this.getIcon = function(icon){
-            return icons[icon]
+            return icons[icon] || 'info'
         }
     </script>
 

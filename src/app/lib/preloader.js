@@ -1,21 +1,24 @@
 import 'nprogress/nprogress.css'
 import NProgress from 'nprogress'
-import {observable} from 'riot'
+import {
+    observable
+} from 'riot'
 import http from './http'
 //import {ready} from './dom'
 
-function createLoader(){
+function createLoader() {
     //pending operations
     let pendingCount = 0
     let timerId
     let startTime = 0
-    function inc(){
+
+    function inc() {
         pendingCount++
-        if(!NProgress.isStarted()){
+        if (!NProgress.isStarted()) {
             NProgress.start()
             startTime = new Date()
         }
-        if(timerId){
+        if (timerId) {
             clearTimeout(timerId)
             timerId = null
         }
@@ -24,20 +27,22 @@ function createLoader(){
     function dec() {
         NProgress.inc()
         pendingCount--
-        if(pendingCount > 0) return
+        if (pendingCount > 0) return
 
         pendingCount = 0
-        if(!timerId){
+        if (!timerId) {
             let eclapsed = new Date() - startTime
-            timerId = setTimeout(()=>{
+            timerId = setTimeout(() => {
                 NProgress.done()
-                //NProgress.remove()
+                    //NProgress.remove()
             }, eclapsed > 1000 ? 300 : 600)
         }
     }
 
-    function init(){
-        NProgress.configure({ showSpinner: false })
+    function init() {
+        NProgress.configure({
+            showSpinner: false
+        })
 
         //wait page ready event
         //inc()
@@ -57,8 +62,7 @@ function createLoader(){
 let loader = createLoader()
 
 //hook http events
-http.onstart = ()=> loader.inc()
-http.oncomplete = ()=> loader.dec()
+http.onstart = () => loader.inc()
+http.oncomplete = () => loader.dec()
 
 export default loader
-
