@@ -8,10 +8,12 @@ import '../components/page/page.html'
         <yield to="menu">
             <div class="tabs is-boxed" style="margin:10px 20px 0;">
                 <ul class="is-left">
-                    <li class="{'is-active': parent.index===0}" onclick="{ parent.change.bind(parent, 0) }"><a href="javascript:void(0)">简介</a></li>
-                    <li class="{'is-active': parent.index===1}" onclick="{ parent.change.bind(parent, 1) }"><a href="javascript:void(0)">布局</a></li>
-                    <li class="{'is-active': parent.index===2}" onclick="{ parent.change.bind(parent, 2) }"><a href="javascript:void(0)">全局</a></li>
-                    <li class="{'is-active': parent.index===3}" onclick="{ parent.change.bind(parent, 3) }"><a href="javascript:void(0)">缓存</a></li>
+                    <li class="{'is-active': parent.index===0}" onclick="{ parent.change(0) }">
+                        <a>Intro</a></li>
+                    <li class="{'is-active': parent.index===1}" onclick="{ parent.change(1) }">
+                        <a>Layout</a></li>
+                    <li class="{'is-active': parent.index===2}" onclick="{ parent.change(2) }">
+                        <a>Components</a></li>
                 </ul>
             </div>
         </yield>
@@ -23,9 +25,12 @@ import '../components/page/page.html'
                             <article class="tile is-child notification is-normal">
                                 <div class="content">
                                     <p class="title">RIOT-Bulma</p>
-                                    <p class="subtitle">轻量级高性能Admin UI框架</p>
-                                    <p>偶然发现了bulma，自然语义定义的方式让人耳目一新，特别gzip后13.6k的size令人印象深刻，于是便抽空做了这套基于riot+bulma的轻量级UI。既然是后台管理UI，便可以任性的对IE无视，此处应有掌声。</p>
-                                    <p>为简化部署及升级便利，UI处理上原则不变动bulma的基础设置，只增加差异化的部分，同时谈化各种切换效果，力求整个UI界面的小清新。</p>
+                                    <p class="subtitle">Light-weight Admin UI</p>
+                                    <p>combine RIOT and Bulma to a super weapon</p>
+                                    <h3><a href="http://bulma.io/" target="_blank">Bulma</a></h3>
+                                    <p>A modern CSS framework based on Flexbox</p>
+                                    <h3><a href="http://riotjs.com" target="_blank">RIOT</a></h3>
+                                    <p>Simple and elegant component-based UI library</p>
                                     <div class="content">
                                         <!-- Content -->
                                     </div>
@@ -40,8 +45,8 @@ import '../components/page/page.html'
                             <article class="tile is-child notification is-normal">
                                 <div class="content">
                                     <p class="title">Flex Layout</p>
-                                    <p class="subtitle">弹性盒内滚动布局</p>
-                                    <p>支持所有新一代浏览器，为获得最优的效果优先推荐使用最新版Chrome，本项目设计为PC端的管理后台使用。</p>
+                                    <p class="subtitle">Magic tiles</p>
+                                    <p>A single element for a Metro UI CSS grid</p>
                                     <div class="content">
                                         <!-- Content -->
                                     </div>
@@ -100,25 +105,9 @@ import '../components/page/page.html'
                         <div class="tile is-parent">
                             <article class="tile is-child notification is-normal">
                                 <div class="content">
-                                    <p class="title">全局组件</p>
-                                    <p class="subtitle">Modal、Toast、Preloader</p>
-                                    <p>为了更方便的调用经常性组件，特别设计为全局组件，可处理多数场景，复杂的处理请自行添加入页面级组件</p>
-                                    <div class="content">
-                                        <!-- Content -->
-                                    </div>
-                                </div>
-                            </article>
-                        </div>
-                    </div>
-                </div>
-                <div class="fade" show="{ index===3 }">
-                    <div class="tile is-ancestor">
-                        <div class="tile is-parent">
-                            <article class="tile is-child notification is-normal">
-                                <div class="content">
-                                    <p class="title">缓存</p>
-                                    <p class="subtitle">keep-alive dom cache、ajax data cache、manifest resource cache</p>
-                                    <p>想让系统更加顺畅，缓存必不可少，vue-bulma中除了vue内置的keep-alive对dom进行缓存外，同时具备ajax的数据缓存机制。另外，还准备了manifest缓存指引，让前端飞起来。。。</p>
+                                    <p class="title">Components</p>
+                                    <p class="subtitle">Modal, Toast, Preloader, Charts, etc.</p>
+                                    <p>Well designed reusable riot based components</p>
                                     <div class="content">
                                         <!-- Content -->
                                     </div>
@@ -132,10 +121,12 @@ import '../components/page/page.html'
     </page>
     <script>
         this.index = 0
-        this.change = (index, e) => {
-            e.preventDefault()
-            this.index = index
-            this.update()
+        this.change = (index) => {
+            return (e)=>{
+                e.preventDefault()
+                this.index = index
+                this.update()
+            }
         }
     </script>
 </page-home>
