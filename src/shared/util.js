@@ -41,3 +41,22 @@ export function clone(src){
 }
 
 export function noop(){}
+
+/**
+   * delay function call until there is no more invocation;
+   * taken from https://remysharp.com/2010/07/21/throttling-function-calls
+   * @param  {Function} fn    [description]
+   * @param  {number}   delay [description]
+   * @param  {any}      scope [description]
+   * @return {Function}       [description]
+   */
+export function debounce(fn, delay, scope) {
+    let timer
+    return function(...args) {
+        let context = scope || this
+        clearTimeout(timer)
+        timer = setTimeout(function() {
+            fn.apply(context, args)
+        }, delay)
+    }
+}

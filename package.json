@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node src/server/index.js",
     "build": "webpack --config config/webpack.config.prod.js",
-    "dev": "webpack-dev-server --config config/webpack.config.dev.js --devtool eval --progress --colors --hot --content-base dist",
+    "dev": "webpack --config config/webpack.config.dev.js --devtool eval --progress --colors --hot --display-error-details --content-base dist",
     "test": "mocha"
   },
   "author": {
