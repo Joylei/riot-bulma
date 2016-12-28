@@ -10,6 +10,36 @@ body{
 .copy, .expand{
     display: none !important;
 }
+.example{
+    margin-top: 30px;
+    border: 1px solid #ffdd57;
+    border-top-right-radius: 3px;
+    color: rgba(0,0,0,.7);
+    padding: 15px 20px;
+    position: relative;
+}
+.example:before{
+    background: #ffdd57;
+    border-radius: 3px 3px 0 0;
+    bottom: 100%;
+    content: "Example";
+    display: inline-block;
+    font-size: 7px;
+    font-weight: bold;
+    left: -1px;
+    letter-spacing: 1px;
+    padding: 3px 5px;
+    position: absolute;
+    text-transform: uppercase;
+    vertical-align: top;
+}
+.example+.highlight {
+    border: 1px solid #ffdd57;
+    border-radius: 0 0 3px 3px;
+    border-top: none;
+    position: relative;
+}
+
 
 .is-right-10{
     margin-right: 10px;
