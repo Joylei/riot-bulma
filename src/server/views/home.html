@@ -16,6 +16,9 @@
 </head>
 <body>
   <app></app>
-  <script src="./assets/bundle.js" type="text/javascript"></script>
+
+  {% for bundle in bundles %}
+    <script src="{{bundle}}"></script>
+  {% endfor %}
 </body>
 </html>

@@ -2,6 +2,7 @@ var merge = require('webpack-merge')
 var webpack = require('webpack')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var path = require('path')
+var AssetsPlugin = require('assets-webpack-plugin')
 
 var config = require('./webpack.config')
 var dir_dist = path.resolve(__dirname, '../dist')
@@ -9,7 +10,7 @@ module.exports = merge(config, {
     devtool: '#source-map',
     output: {
         path: dir_dist,
-        publicPath:'assets',
+        publicPath:'assets/',
         filename: 'js/[name].[chunkhash].js',
         chunkFilename: 'js/[id].[chunkhash].js',
     },
@@ -43,6 +44,11 @@ module.exports = merge(config, {
         new webpack.optimize.CommonsChunkPlugin({
             name: 'manifest',
             chunks: ['vendor']
+        }),
+        new AssetsPlugin({
+            filename: 'webpack-assets.json',
+            //includeManifest: 'manifest',
+            path: dir_dist
         })
     ]
 })

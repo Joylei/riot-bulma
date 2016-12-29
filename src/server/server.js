@@ -1,4 +1,5 @@
 import path from 'path'
+import fs from 'fs'
 
 import koa from 'koa'
 import logger from 'koa-logger'
@@ -14,9 +15,20 @@ app.use(logger())
 
 app.use(route.get('/', home))
 
+let bundles
+if(process.env.NODE_ENV !== 'production'){
+    bundles = ['./assets/bundle.js']
+}else{
+    let file = path.resolve(__dirname, '../../dist/webpack-assets.json')
+    let text = fs.readFileSync(file)
+    let data = JSON.parse(text)
+    bundles = Object.keys(data).map(key =>{
+        return data[key].js
+    })
+}
 function *home(){
     //yield next
-    this.body = yield render('home')
+    this.body = yield render('home', {bundles})
 }
 
 if(process.env.NODE_ENV !== 'production'){

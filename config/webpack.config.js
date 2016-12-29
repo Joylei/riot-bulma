@@ -13,9 +13,9 @@ module.exports = {
     },
     resolve: {
         extensions: ['', '.js', '.html'],
-        root:[dir_app],
+        root: [dir_app],
         fallback: [dir_node_modules],
-        alias:{
+        alias: {
             'app': dir_app,
             'src': dir_src
         }
@@ -89,7 +89,7 @@ module.exports = {
         //     filename: 'index.html',
         //     template: 'index.html',
         //     inject: true
-        // })
+        // }),
     ],
     stats: {
         colors: true
