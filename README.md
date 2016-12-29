@@ -2,6 +2,8 @@
 
 combine RIOT and Bulma
 
+DEMO: [https://riot-bulma.github.io/](https://riot-bulma.github.io/)
+
 ![demo](./demo.png)
 
 ## Bulma
@@ -24,9 +26,7 @@ Bulma
 koa
 webpack
 ECharts
-datepickr
 NProgress
-riot-format
 https://github.com/Joylei/koa-webpack-middleware.git
 ```
 
