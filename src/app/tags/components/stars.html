@@ -1,35 +1,50 @@
-<stars class="stars">
-    <div class="star" each="{ n in range() }" onclick="{ click(n+1) }" onmouseover="{ mouseover(n) }" onmouseleave="{ mouseleave(n) }">
-        <span style="{ color: getColor(n) }">
-            <i class="fa fa-star"></i>
-            <i class="fa icon-copy fa-star { 'effect-' + opts.effect }" if="{ opts.effect && inited() && (n+1)===getAmount() }" ref="copy"></i>
+<stars>
+    <div class="star" each="{ n in range() }" onclick="{ click(n+1) }" 
+    onmouseover="{ mouseover(n) }" onmouseleave="{ mouseleave(n) }">
+        <span style="color: { getColor(n) };">
+            <i class="fa fa-{icon}"></i>
+            <i class="fa icon-copy fa-{icon} is-hidden"></i>
         </span>
     </div>
 
     <script>
-        this.loc = 0
-
-        this.inited = ()=>{
-            let val = this.getAmount()
-            return typeof val !== 'undefined'
+        function getNumber(val, defaultVal){
+            return isNaN(Number(val)) ? defaultVal : val
         }
-
-        this.getAmount = ()=>{
-            if(typeof this.amount!=='undefined'){
-                return this.amount
+        this.mixin({
+            get initial(){
+                return getNumber(opts.current, 0)
+            },
+            get current(){
+                let val = this.initial
+                if(this.val !== val){
+                    this.val === val
+                }
+                //console.log(this.val)
+                return this.val 
+            },
+            get size(){
+                return getNumber(opts.size, 5)
+            },
+            get icon(){
+                return opts.icon || 'star'
             }
-            return opts.amount
+        })
+        this.val = this.initial
+
+        const REVERSE_COLOR = '#bbb'
+        const DEFAULT_COLOR = '#f5bd23'
+        this.getColor = (n)=>{
+            return n < this.current ? (opts.color || DEFAULT_COLOR):REVERSE_COLOR
         }
 
-        const DEFAULT_COLOR = '#bbb'
-        this.getColor = (n)=>{
-            let color = (n<getAmount() || (n<this.loc && !opts.readonly))? opts.color:DEFAULT_COLOR
-            return color || DEFAULT_COLOR
+        this.hasEffect = (n) =>{
+            return this.animate && this.val === n
         }
 
         this.range = ()=>{
             let items = []
-            for(let i=0; i< opts.size; i++){
+            for(let i=0; i< this.size; i++){
                 items.push(i)
             }
             return items
@@ -37,37 +52,41 @@
 
         this.mouseover = (n)=>{
             return (e) =>{
-                this.loc = n + 1
+                if(opts.readonly) return
+                this.val = n + 1
                 this.update()
             }
         }
         this.mouseleave = (n)=>{
             return (e)=>{
-                this.loc = 0
+                if(opts.readonly) return
+                this.val = this.initial
                 this.update()
             }
         }
+
         this.click = (i)=>{
             return (e)=>{
-                if(!opts.readonly && !this.amount !== i){
-                    //this.inited = true
-                    this.amount = i
-                    if(opts.effect){
-                        //let el =e.currentTarget
-                        setTimeout(()=>{
-                            let el = this.refs.copy
-                            if(el && el.parentNode){
-                                el.parentNode.removeChild(el)
-                            }
-                        }, 1100)
-                    }
+                if(opts.readonly || this.val===this.initial) return
+                if(opts.effect){
+                    let el = this.root.querySelectorAll('.icon-copy')[i-1]
+                    let className = 'effect-' + opts.effect
+                    el.classList.remove('is-hidden')
+                    el.classList.add(className)
+                    setTimeout(()=>{
+                        el.classList.add('is-hidden')
+                        el.classList.remove(className)
+                    }, 1100)
+                }
+                if(opts.change){
+                    opts.change.call(null,this.val)
                 }
             }
         }
     </script>
     <style type="text/less">
-    @import '../../less/variables.less'
-    .stars {
+    @import 'src/app/assets/less/variables.less';
+    :scope {
         display: flex;
         align-items: center;
         justify-content: flex-start;
@@ -84,7 +103,8 @@
             cursor: pointer;
         }
         .icon-copy{
-            position:absolute;bottom:0;margin-left:-100%;
+            position:absolute;bottom:0;
+            /*margin-left:-100%;*/
             animation-duration: 1s;
             animation-fill-mode: forwards;
         }

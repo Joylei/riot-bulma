@@ -1,28 +1,47 @@
 import '../components/page/page.html'
-//import '../components/stars.tag'
+import '../components/stars.html'
 <page-rating>
   <page>
     <yield to="title">Rating</yield>
     <yield to="content">
       <div class="notification">
         <label class="label">ReanOnly</label>
-        <stars amount="{ 4 }" size="{ 5 }" readonly="{ true }"></stars>
+        <stars current="4" size="5" readonly="true"></stars>
         <br>
         <label class="label">iPhone 5</label>
-        <stars amount="{ 3 }" size="{ 5 }" readonly="{ false }" color="{ '#04be02' }"></stars>
+        <stars current="{ parent.p2 }" size="5" change="{ parent.update2 }" color="{ '#04be02' }"></stars>
         <br>
         <label class="label">iPhone 6</label>
-        <stars amount="{ 3 }" size="{ 5 }" readonly="{ false }" mode="{ 'rotate' }"></stars>
+        <stars current="{ parent.p3 }" size="5" change="{ parent.update3 }" effect="{ 'rotate' }"></stars>
         <br>
         <label class="label">iPhone 6s</label>
-        <stars amount="{ 8 }" size="{ 10 }" readonly="{ false }" color="{ '#f30' }" icon="{ 'heart' }" mode="{ 'grow' }"></stars>
+        <stars current="{ parent.p4 }" size="10" change="{ parent.update4 }" color="{ '#f30' }" icon="{ 'heart' }" effect="{ 'grow' }"></stars>
         <br>
         <label class="label">iPhone 7</label>
-        <stars amount="{ 8 }" size="{ 10 }" readonly="{ false }" color="{ '#f30' }" icon="{ 'rocket' }" mode="{ 'grow' }"></stars>
+        <stars current="{ parent.p5 }" size="10" change="{ parent.update5 }" color="{ '#f30' }" icon="{ 'rocket' }" effect="{ 'grow' }"></stars>
       </div>
     </yield>
   </page>
   <script>
-
+      this.p2 = 3
+      this.p3 = 3
+      this.p4 = 8
+      this.p5 = 8
+      this.update2 = (val) => {
+        this.p2 = val
+        this.update()
+      }
+      this.update3 = (val) => {
+        this.p3 = val
+        this.update()
+      }
+      this.update4 = (val) => {
+        this.p4 = val
+        this.update()
+      }
+      this.update5 = (val) => {
+        this.p5 = val
+        this.update()
+      }
   </script>
 </page-rating>
