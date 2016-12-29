@@ -1,4 +1,4 @@
-import './less/app.less'
+import './assets/less/app.less'
 
 import * as riot from 'riot'
 import './tags/app.html'

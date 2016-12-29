@@ -13,7 +13,12 @@ module.exports = {
     },
     resolve: {
         extensions: ['', '.js', '.html'],
-        fallback: [dir_node_modules]
+        root:[dir_app],
+        fallback: [dir_node_modules],
+        alias:{
+            'app': dir_app,
+            'src': dir_src
+        }
     },
     module: {
         preLoaders: [{
@@ -45,7 +50,7 @@ module.exports = {
             }, {
                 test: /tags\/.*?\.html$/,
                 loader: 'babel',
-                nclude: dir_src,
+                include: dir_src,
                 exclude: dir_node_modules
             }, {
                 test: /\.js$/,
