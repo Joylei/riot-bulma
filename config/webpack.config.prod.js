@@ -22,7 +22,7 @@ module.exports = merge(config, {
                 warnings: false
             }
         }),
-        new webpack.optimize.OccurenceOrderPlugin(),
+        new webpack.optimize.ModuleConcatenationPlugin(),
         // extract css into its own file
         new ExtractTextPlugin('assets/css/[name].[contenthash].css'),
         // split vendor js into its own file

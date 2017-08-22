@@ -34,7 +34,7 @@ function createLoader() {
             let eclapsed = new Date() - startTime
             timerId = setTimeout(() => {
                 NProgress.done()
-                    //NProgress.remove()
+                //NProgress.remove()
             }, eclapsed > 1000 ? 300 : 600)
         }
     }
