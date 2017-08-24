@@ -1,7 +1,3 @@
-import '../components/page/page.html'
-import {resource} from '../../lib/http'
-import store from '../../store'
-
 <page-ajax>
     <page>
         <yield to="title">Ajax</yield>
@@ -34,7 +30,9 @@ import store from '../../store'
     </page>
 
     <script>
-
+      import '../components/page/page.html'
+      import {resource} from '../../lib/http'
+      import store from '../../store'
       const url = 'https://api.github.com/search/repositories?q=language%3Ajavascript&sort=stars'
       const color = ['is-primary', 'is-info', 'is-success', 'is-warning', 'is-danger']
       this.getColor = (item) => color[item.stargazers_count % 5]

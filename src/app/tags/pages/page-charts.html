@@ -1,6 +1,3 @@
-import '../components/page/page.html'
-import 'riot-echarts'
-
 <page-charts>
     <page>
         <yield to="title">Charts</yield>
@@ -45,7 +42,9 @@ import 'riot-echarts'
         </yield>
     </page>
     <script>
-        var self = this
+        import '../components/page/page.html'
+        import 'riot-echarts'
+        const self = this
         this.data = [
             ['name', 'value'],
             ['a', 10],

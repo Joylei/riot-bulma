@@ -1,5 +1,3 @@
-import '../components/page/page.html'
-import '../components/progress-bar.html'
 <page-progress>
   <page>
     <yield to="title">Progress</yield>
@@ -55,6 +53,9 @@ import '../components/progress-bar.html'
     </yield>
   </page>
   <script>
+      import '../components/page/page.html'
+      import '../components/progress-bar.html'
+      
       this.val = 80
       this.val2 = 17
       this.val3 = 33.3

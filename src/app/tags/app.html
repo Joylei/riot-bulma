@@ -1,11 +1,3 @@
-import route from '../route'
-import {isFunction} from '../../shared/util'
-import store, {Action_Login, Action_Logout, Action_Toast, 
-    Action_Show_Modal, Action_Hide_Modal} from '../store'
-import './components/page/header.html'
-import './components/page/sidebar.html'
-import './components/modal/toast.html'
-import './components/modal/modal.html'
 <app>
     <header if="{ isLoggedIn }"></header>
     <section class="page-container">
@@ -16,6 +8,15 @@ import './components/modal/modal.html'
     </section>
 
     <script>
+        import route from '../route'
+        import {isFunction} from '../../shared/util'
+        import store, {Action_Login, Action_Logout, Action_Toast, 
+            Action_Show_Modal, Action_Hide_Modal} from '../store'
+        import './components/page/header.html'
+        import './components/page/sidebar.html'
+        import './components/modal/toast.html'
+        import './components/modal/modal.html'
+
         const baseUrl='#!/', homeUrl='#!/',loginUrl = '#!/login'
 
         function getHash(){

@@ -7,13 +7,8 @@ var dir_app = path.resolve(__dirname, '../src/app')
 var dir_dist = path.resolve(__dirname, '../dist')
 module.exports = merge(config, {
     entry: {
-        'app': [
-            // For old browsers
-            'eventsource-polyfill',
-            'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&'
-                +'reload=true&noInfo=false&quiet=false',
-            path.resolve(dir_app, 'app.js')
-        ]
+        'app': ['webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&'
+            +'reload=true&noInfo=false&quiet=false']
     },
     output: {
         path: dir_dist,

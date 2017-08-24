@@ -1,4 +1,3 @@
-import store from '../../store'
 <page-login>
     <div class="wrapper">
         <div class="modal is-active">
@@ -22,6 +21,7 @@ import store from '../../store'
         </div>
     </div>
     <script>
+        import store from '../../store'
         this.login = (e) => {
             store.login()
         }

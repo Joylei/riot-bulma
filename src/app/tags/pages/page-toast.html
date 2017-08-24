@@ -1,5 +1,3 @@
-import '../components/page/page.html'
-import store from '../../store'
 <page-toast>
     <page>
         <yield to="title">Toast</yield>
@@ -18,6 +16,9 @@ import store from '../../store'
         </yield>
     </page>
     <script>
+        import '../components/page/page.html'
+        import store from '../../store'
+        
         const messages = [{
             type: 'normal',
             title: 'normal message'

@@ -1,7 +1,3 @@
-import '../components/page/page.html'
-import '../components/modal/modal.html'
-import store from '../../store'
-import modal, { Action_Show_Modal, Action_Hide_Modal } from '../../lib/modal'
 <page-modal>
     <page>
         <yield to="title">Modal</yield>
@@ -36,7 +32,12 @@ import modal, { Action_Show_Modal, Action_Hide_Modal } from '../../lib/modal'
         </yield>
         
     </page>
-    <script> 
+    <script>
+        import '../components/page/page.html'
+        import '../components/modal/modal.html'
+        import store from '../../store'
+        import modal, { Action_Show_Modal, Action_Hide_Modal } from '../../lib/modal'
+        
         this.localStore = modal(riot.observable())
         this.localStore.on(Action_Show_Modal, ()=> this.update())
         this.localStore.on(Action_Hide_Modal, ()=> this.update())

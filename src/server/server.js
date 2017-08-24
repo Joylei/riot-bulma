@@ -8,7 +8,7 @@ import route from 'koa-route'
 import mount from 'koa-mount'
 import render from './lib/render'
 
-const app = koa()
+const app = new koa()
 
 app.use(logger())
 
@@ -26,9 +26,9 @@ if(process.env.NODE_ENV !== 'production'){
         return data[key].js
     })
 }
-function *home(){
+async function home(){
     //yield next
-    this.body = yield render('home', {bundles})
+    this.body = await render('home', {bundles})
 }
 
 if(process.env.NODE_ENV !== 'production'){

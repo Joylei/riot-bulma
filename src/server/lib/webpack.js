@@ -13,7 +13,8 @@ module.exports = function(app){
             pool: true
         },
         publicPath: webpackConfig.output.publicPath,
-        stats: { colors: true, chunks: false }
+        stats: { colors: true, chunks: false },
+        serverSideRender: false
     }))
     app.use(hotMiddleware(compiler))
 }

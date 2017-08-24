@@ -1,5 +1,3 @@
-import  {isFunction} from '../../../../shared/util'
-import '../raw.html'
 <modal>
     <div class="modal { 'is-active':data.active }">
         <div class="modal-background" onclick="{ data.onclose }"></div>
@@ -31,6 +29,15 @@ import '../raw.html'
         </div>
     </div>
     <script>
+         /**
+         * opts.title: string
+         * opts.content: string
+         * opts.html: string
+         * opts.mode?: string 
+         * opts.buttons?: Array<{ icon?:string, title: string , href?:string, onclick:(e)=>any }>
+         */
+        import  {isFunction} from '../../../../shared/util'
+        import '../raw.html'
         const RE_WIDTH = /^\s*?((\d+(\.\d+)?(px|em|%))|auto)\s*?(\s+?!important)?\s*?$/ig
 
         Object.defineProperty(this, 'data', {
@@ -38,14 +45,6 @@ import '../raw.html'
                 return opts.data || {}
             }
         })
-
-        /**
-         * opts.title: string
-         * opts.content: string
-         * opts.html: string
-         * opts.mode?: string 
-         * opts.buttons?: Array<{ icon?:string, title: string , href?:string, onclick:(e)=>any }>
-         */
         this.getStyle = ()=>{
             return RE_WIDTH.test(this.data.width) ? 'width:'+this.data.width : ''
         }

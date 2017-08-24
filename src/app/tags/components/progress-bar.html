@@ -1,5 +1,3 @@
-import {debounce} from '../../../shared/util'
-
 <progress-bar class="columns is-multiline is-gapless is-mobile">
     <div if="{ opts.title }" class="column is-6 is-bottom-5">{ opts.title }</div>
     <div if="{ opts.title }" class="column is-6 is-bottom-5 has-text-right">
@@ -17,6 +15,7 @@ import {debounce} from '../../../shared/util'
     </div>
 
     <script>
+        import {debounce} from '../../../shared/util'
         function getNumber(val, defaultVal){
             return isNaN(Number(val)) ? defaultVal : val
         }
